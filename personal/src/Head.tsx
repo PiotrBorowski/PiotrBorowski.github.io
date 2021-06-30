@@ -1,13 +1,13 @@
 import * as THREE from "three";
 import { GLTFLoader } from "./helpers/GLTFLoader";
-import { LoadingManager, Mesh, SpotLight } from "three";
+import { BufferGeometry, LoadingManager, Mesh, MeshToonMaterial, SpotLight } from "three";
 
 export function Head() {
   let container, loader;
 
   let camera, scene, renderer;
 
-  let mesh: Mesh;
+  let mesh: Mesh<BufferGeometry, MeshToonMaterial>;
 
   let spotLight: SpotLight;
 
@@ -134,7 +134,10 @@ export function Head() {
     if (mesh) {
       mesh.rotation.y += 0.5 * (targetX - mesh.rotation.y);
       mesh.rotation.x += 0.5 * (targetY - mesh.rotation.x);
+      mesh.material.color.setScalar(targetX + targetY );
     }
+
+    
 
     renderer.render(scene, camera);
   }

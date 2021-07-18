@@ -19,11 +19,11 @@ export const Dropdown = ({children}) => {
 
     const ref = useRef<HTMLDivElement>();
 
-    const handleOutsideClick = useCallback(event => {
+    const handleOutsideClick = event => {
         if(!ref?.current?.contains(event.target as any)) {
             setIsOpen(false);
         }
-    }, [ref])
+    }
 
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick)
@@ -31,7 +31,7 @@ export const Dropdown = ({children}) => {
         return () => {document.removeEventListener('click', handleOutsideClick)}
     }, []);
 
-    const openedView = useMemo(() => (<ul style={{}}>{children}</ul>), [children])
+    const openedView = useMemo(() => (<ul style={{position: 'absolute', transform: "translate(-50%, 10px)"}}>{children}</ul>), [children])
     
     return (<div ref={ref}>
         <span style={{cursor: 'pointer'}} onClick={() => {setIsOpen(!isOpen)}}>Dropdown</span>

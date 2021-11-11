@@ -1,4 +1,5 @@
 import React, { ReactChildren, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { MenuItem } from './Menu';
 
 
 export interface DropdownItemProps {
@@ -25,16 +26,17 @@ export const Dropdown = ({children}) => {
         }
     }
 
-    useEffect(() => {
-        document.addEventListener('click', handleOutsideClick)
+    // to nie jest zgodne z WCAG
+    // useEffect(() => {
+    //     document.addEventListener('click', handleOutsideClick)
 
-        return () => {document.removeEventListener('click', handleOutsideClick)}
-    }, []);
+    //     return () => {document.removeEventListener('click', handleOutsideClick)}
+    // }, []);
 
-    const openedView = useMemo(() => (<ul style={{position: 'absolute', transform: "translate(-50%, 10px)"}}>{children}</ul>), [children])
+    const openedView = useMemo(() => (<ul style={{position: 'absolute', transform: "translate(-25%, 10px)"}}>{children}</ul>), [children])
     
     return (<div ref={ref}>
-        <span style={{cursor: 'pointer'}} onClick={() => {setIsOpen(!isOpen)}}>Dropdown</span>
+        <MenuItem onClick={() => {setIsOpen(!isOpen)}}>Dropdown</MenuItem>
         {isOpen && openedView}
     </div>)
 }

@@ -1,26 +1,48 @@
-import React, { useEffect } from "react";
-import "./App.css";
-import { Head } from "./three/Head";
-import { Menu } from "./components/Menu"
+import React from "react";
+import { Menu } from "./components/Menu";
 import styled from "styled-components";
 
 const AppComponent = styled.div`
-background: hsla(231, 82%, 6%, 1);
+  background-image: url("./assets/stacked-waves-haikei.svg");
+  background-size: cover;
+`;
 
-background: linear-gradient(90deg, hsla(231, 82%, 6%, 1) 0%, hsla(339, 80%, 12%, 1) 11.11111111111111%, hsla(354, 93%, 22%, 1) 22.22222222222222%, hsla(358, 97%, 31%, 1) 33.33333333333333%, hsla(0, 100%, 41%, 1) 44.44444444444444%, hsla(12, 98%, 44%, 1) 55.55555555555556%, hsla(23, 97%, 46%, 1) 66.66666666666666%, hsla(34, 95%, 49%, 1) 77.77777777777777%, hsla(39, 96%, 50%, 1) 88.88888888888889%, hsla(43, 100%, 52%, 1) 100%);
+const TitleLetter = styled.span`
+  list-style-type: none;
+  font-family: archivo-black, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10em;
+  position: relative;
+`;
 
-background: -moz-linear-gradient(90deg, hsla(231, 82%, 6%, 1) 0%, hsla(339, 80%, 12%, 1) 11.11111111111111%, hsla(354, 93%, 22%, 1) 22.22222222222222%, hsla(358, 97%, 31%, 1) 33.33333333333333%, hsla(0, 100%, 41%, 1) 44.44444444444444%, hsla(12, 98%, 44%, 1) 55.55555555555556%, hsla(23, 97%, 46%, 1) 66.66666666666666%, hsla(34, 95%, 49%, 1) 77.77777777777777%, hsla(39, 96%, 50%, 1) 88.88888888888889%, hsla(43, 100%, 52%, 1) 100%);
+const TitleContainer = styled.div`
+  animation: scatter 1s infinite;
+`;
 
-background: -webkit-linear-gradient(90deg, hsla(231, 82%, 6%, 1) 0%, hsla(339, 80%, 12%, 1) 11.11111111111111%, hsla(354, 93%, 22%, 1) 22.22222222222222%, hsla(358, 97%, 31%, 1) 33.33333333333333%, hsla(0, 100%, 41%, 1) 44.44444444444444%, hsla(12, 98%, 44%, 1) 55.55555555555556%, hsla(23, 97%, 46%, 1) 66.66666666666666%, hsla(34, 95%, 49%, 1) 77.77777777777777%, hsla(39, 96%, 50%, 1) 88.88888888888889%, hsla(43, 100%, 52%, 1) 100%);`
+const NAME = "Piotr Borowski";
 
 function App() {
-  // useEffect(() => {
-  //   Head();
-  // }, []);
+  return (
+    <AppComponent id="app">
+      {/* <Menu/> */}
+      <TitleContainer>
+        {NAME.split("").map((l, i) => (
+          <TitleLetter
+            style={{
+              textShadow: `4px 4px ${i % 2 ? "#e85d04" : "#6a040f"}`,
+              color: i - (1 % 2) ? "#faa307" : "#ffba08",
+            }}
+          >
+            {l}
+          </TitleLetter>
+        ))}
+      </TitleContainer>
+      <div style={{ height: 1000 }}></div>
 
-  return <AppComponent id='app'>
-     <Menu/>
-  </AppComponent>
+      <div style={{ height: 1000 }}></div>
+    </AppComponent>
+  );
 }
 
 export default App;
